@@ -14,7 +14,6 @@ using namespace std;
 
 //Function Prototypes
 bool isPrime(int);
-void writeToFile(ofstream& outputFile,vector<int>& primeList, int);
 
 //Determines if number is prime
 bool isPrime(int number)
@@ -35,25 +34,6 @@ bool isPrime(int number)
 		
 		return true;
 	}
-	
-//Writes prime numbers to output file	
-void writeToFile(ofstream& outputFile, vector<int>& primeList, int cols)
-	{
-		int count = 0;
-		int rowCount = 1;
-		
-		while (count < primeList.size())
-			{
-				outputFile << primeList[count] << '\t';
-				
-				if(count % cols == cols - 1)
-					{
-						outputFile << endl;
-					}
-				
-				count++;
-			}
-	}
 
 int main(int argc, char* argv[])
 	{
@@ -62,23 +42,30 @@ int main(int argc, char* argv[])
 		int columns = atoi(argv[3]);
 		int interval = 0;
 		int primes = 0;
-		vector<int> primeList;
+		int count = 0;
+		int numPerRow = numPrimes / columns;
 		
 		ofstream outputFile;
 		outputFile.open(argv[1]);
 		
-		//Loops through until desired number of primes are generated.  When prime is found, it is added to vector list.
+		//Loops through until desired number of primes are generated.  When prime is found, it is printed to output file.  When the number of primes per row has been reached, a new line is started in the output file.
 		for(int num = 0; primes < numPrimes; num++)
 			{
 				if(isPrime(num))
 					{
-						primeList.push_back(num);
 						primes++;
+						count++;
+						outputFile << num << '\t';
+						
+						if(count == numPerRow)
+							{
+								count = 0;
+								outputFile << endl;
+							}
 					}
+					
 			}
 		
-		//Writes primes to output file and closes output file.
-		writeToFile(outputFile, primeList, columns);	
 		outputFile.close();
 		
 		return 0;
