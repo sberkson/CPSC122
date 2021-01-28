@@ -8,7 +8,6 @@ Description: Program is designed to generate X amount of prime numbers.  Program
 
 #include <iostream>
 #include <fstream>
-#include <vector>
 
 using namespace std;
 
