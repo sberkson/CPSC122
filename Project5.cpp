@@ -1,3 +1,11 @@
+/*
+Name: Sam Berkson
+Class: CPSC 122-01
+Date Submitted: 2/8/21
+Assignment: Project 5
+Description: Program operates on 3 modes: 0 = generate key, 1 = encrypt, 2 = decrypt. Program can generate a number between 0-25 to serve as encryption cipher key.  Program can read in a plain text file, encrypts characters using a caeser cipher, stores the key in a separate text file, and then outputs the encrypted characters to a cipher text file.  Program can decrypt the cipher text file and then write decrypted text to a separate text file.
+*/
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -121,7 +129,7 @@ char encrypt(char ch, int key)
 			}
 		ch += key;
 		
-		if(ch > 90) //Recursed through alphabet if limit reached
+		if(ch > 90) //Recurses through alphabet if limit reached
 			{
 				ch -= 26;
 			}
@@ -144,7 +152,7 @@ char decrypt(char ch, int key)
 		
 		return ch;
 	}
-//Main function
+
 int main(int argc, char* argv[])
 	{
 		//Selects mode and declares file names
