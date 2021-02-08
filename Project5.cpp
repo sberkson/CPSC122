@@ -158,7 +158,7 @@ char decrypt(char ch, int key)
 		
 		return ch;
 	}
-
+//Closes all open files
 void closeFiles(fstream& keyFile, fstream& PTfile, fstream& CTfile, fstream& PTEfile)
 	{
 		if(keyFile.is_open())
