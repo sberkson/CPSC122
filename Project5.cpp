@@ -11,6 +11,7 @@ Description: Program operates on 3 modes: 0 = generate key, 1 = encrypt, 2 = dec
 #include <cstdlib>
 #include <cmath>
 #include <string>
+#include <ios>
 
 using namespace std;
 //Function Prototypes
@@ -22,6 +23,7 @@ char decrypt(char, int);
 void keyGenWrite(char* argv, fstream& keyFile);
 void encryptFile(char* argv, fstream& keyFile, fstream& PTfile, fstream& CTfile);
 void decryptFile(char* argv, fstream& keyFile, fstream& CTfile, fstream& PTEfile);
+void closeFiles(fstream& keyFile, fstream& PTfile, fstream& CTfile, fstream& PTEfile);
 //Function opens file for either reading or writing
 void fileOpen(fstream& file, string name, char mode)
 	{
@@ -53,6 +55,7 @@ void fileOpen(fstream& file, string name, char mode)
 //Generates and returns random number 0-25
 int generateKey()
 	{
+		srand(time(NULL));
 		int key = rand() % 26;
 		return key;
 	}
@@ -67,7 +70,7 @@ void keyGen(char* argv[], fstream& keyFile)
 void encryptFile(char* argv[], fstream& keyFile, fstream& PTfile, fstream& CTfile)
 	{
 		//Variable initializations
-		int key = 5;
+		int key;
 		string input = "";
 		string keyFileName = argv[2];
 		string ptFileName = argv[3];
@@ -84,7 +87,7 @@ void encryptFile(char* argv[], fstream& keyFile, fstream& PTfile, fstream& CTfil
 				
 				for(int i = 0; i < input.length(); i++)
 					{
-						CTfile << encrypt(input[i], key); //Encrypts each line
+						CTfile << encrypt(input[i], key); //Encrypts each line					
 					}
 				CTfile << endl;
 			}
@@ -93,7 +96,7 @@ void encryptFile(char* argv[], fstream& keyFile, fstream& PTfile, fstream& CTfil
 void decryptFile(char* argv[], fstream& keyFile, fstream& CTfile, fstream& PTEfile)
 	{
 		//Variable initializations
-		int key = 5;
+		int key;
 		string input = "";
 		string keyFileName = argv[2];
 		string ctFileName = argv[3];
@@ -119,20 +122,23 @@ void decryptFile(char* argv[], fstream& keyFile, fstream& CTfile, fstream& PTEfi
 //Encrypts character based on the cipher key, returns encrypted character
 char encrypt(char ch, int key)
 	{
+		
 		if(ch == ' ')
 			{
 				return ' ';
 			}
 		if(islower(ch)) // Converts to upper case
 			{
-				toupper(ch);
+				ch -= 32;
 			}
+			
 		ch += key;
 		
 		if(ch > 90) //Recurses through alphabet if limit reached
 			{
 				ch -= 26;
 			}
+			
 		return ch;
 	}
 //Decrypted character based on the cipher key, returns decrypted character
@@ -153,6 +159,25 @@ char decrypt(char ch, int key)
 		return ch;
 	}
 
+void closeFiles(fstream& keyFile, fstream& PTfile, fstream& CTfile, fstream& PTEfile)
+	{
+		if(keyFile.is_open())
+			{
+				keyFile.close();
+			}
+		if(PTfile.is_open())
+			{
+				PTfile.close();
+			}
+		if(CTfile.is_open())
+			{
+				CTfile.close();
+			}
+		if(PTEfile.is_open())
+			{
+				PTEfile.close();
+			}
+	}
 int main(int argc, char* argv[])
 	{
 		//Selects mode and declares file names
@@ -179,6 +204,6 @@ int main(int argc, char* argv[])
 			{
 				decryptFile(argv, keyFile, CTfile, PTEfile);
 			}
-		
+		closeFiles(keyFile, PTfile, CTfile, PTEfile);
 		return 0;
 	}
