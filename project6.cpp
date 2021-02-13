@@ -50,7 +50,7 @@ void keyGen(string keyFileName)
 
   fileOpen(keyFile, keyFileName, 'w');
 
-  keyFile << 17 << endl << 20;
+  keyFile << alpha << endl << beta;
 }
 char encrypt(char ch, int alpha, int beta)
 {
@@ -61,9 +61,9 @@ char encrypt(char ch, int alpha, int beta)
 
   if(islower(ch))
     { 
-      toupper(ch);
+      ch -= 32;
     }
-
+  cout << ch;
   ch = (char)((((alpha * (ch - 'A')) + beta) % 26) + 'A');
 
   return ch;
