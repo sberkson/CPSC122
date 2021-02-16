@@ -12,7 +12,6 @@ Description: Program encrypts/decrypts text file using an Affine Cipher key.
 #include <cmath>
 #include <string>
 #include <ios>
-
 using namespace std;
 //Function Prototypes
 int findInverse(int);
