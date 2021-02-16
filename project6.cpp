@@ -1,3 +1,11 @@
+/*
+Name: Sam Berkson
+Class: CPSC 122-01
+Date Submitted: 2/13/2021
+Assignment: Project 6
+Description: Program encrypts/decrypts text file using an Affine Cipher key.
+*/
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -28,6 +36,7 @@ int main(int argc, char* argv[])
     }
   return 0;
 }
+//Finds multiplicative inverses of alphabet
 int findInverse(int alpha)
 {
   int inverse = 0;
@@ -40,6 +49,7 @@ int findInverse(int alpha)
         }
     }
 }
+//Generates and writes to Keyfile the alpha and beta values for key
 void keyGen(string keyFileName)
 {
   srand(time(NULL));
@@ -52,6 +62,7 @@ void keyGen(string keyFileName)
 
   keyFile << alpha << endl << beta;
 }
+//Encrypts character
 char encrypt(char ch, int alpha, int beta)
 {
   if(ch == ' ')
@@ -68,6 +79,7 @@ char encrypt(char ch, int alpha, int beta)
 
   return ch;
 }
+//Decrypts character
 char decrypt(char ch, int alpha, int beta, int MI[])
 {
   int inverse = MI[alpha];
@@ -81,30 +93,32 @@ char decrypt(char ch, int alpha, int beta, int MI[])
 
   return ch;
 }
+//Controls file operations
 void fileControl(string keyFileName, string inFileName, string outFileName, int mode)
 {
   fstream keyFile, inFile, outFile;
   string input;
   int alpha, beta;
   int MI[26];
-
+  //Base opening and assigning of keyfile, alpha, and beta values
   fileOpen(keyFile, keyFileName, 'r');
   keyFile >> alpha;
   getline(keyFile, input);
   keyFile >> beta;
-
+  //Encrypt mode
   if(mode == 1)
     {
+      //Opens files
       fileOpen(inFile, inFileName, 'r');
       fileOpen(outFile, outFileName, 'w');
 
       while(inFile.peek() != EOF)
         {
-          getline(inFile, input);
+          getline(inFile, input); //Reads in line
 
           for(int i = 0; i < input.length(); i++)
             {
-              outFile << encrypt(input[i], alpha, beta);
+              outFile << encrypt(input[i], alpha, beta); //Writes encrypted character to outFile
             }
 
           outFile << endl;
@@ -114,25 +128,26 @@ void fileControl(string keyFileName, string inFileName, string outFileName, int 
     {
       for(int i = 0; i < 26; i++)
         {
-          MI[i] = findInverse(alpha);
+          MI[i] = findInverse(alpha); //Fills MI array with multiplicative inverses
         }
-
+      //Opens files
       fileOpen(outFile, outFileName, 'r');
       fileOpen(inFile, inFileName, 'w');
 
       while(outFile.peek() != EOF)
         {
-          getline(outFile, input);
+          getline(outFile, input); //Reads in line
 
           for(int i = 0; i < input.length(); i++)
             {
-              inFile << decrypt(input[i], alpha, beta, MI);
+              inFile << decrypt(input[i], alpha, beta, MI); //Writes decrypted character to inFile
             }
 
           inFile << endl;
         }
     }
 }
+//Open file function
 void fileOpen(fstream& file, string name, char mode)
 {
   string fileType;
