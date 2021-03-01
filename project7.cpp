@@ -11,6 +11,7 @@ void keyGen(string);
 char transform(char, int[][2]);
 void fileControl(string, string, string, int);
 void fileOpen(fstream&, string, char);
+void sort(int&);
 void closeFiles(fstream&, fstream&, fstream&);
 //Main
 int main(int argc, char* argv[]) 
@@ -133,6 +134,8 @@ void fileControl(string keyFileName, string inFileName, string outFileName, int 
       }
     }
 
+    sort(tempMatrix);
+
     while(outFile.peek() != EOF)
     {
       getline(outFile, input); 
@@ -145,6 +148,7 @@ void fileControl(string keyFileName, string inFileName, string outFileName, int 
       inFile << endl;
     }     
   }
+  closeFiles(keyFile, inFile, outFile);
 }
 
 void fileOpen(fstream& file, string name, char mode)
@@ -173,4 +177,44 @@ void fileOpen(fstream& file, string name, char mode)
     cout << "Error opening " << fileType << " file" << endl; 
     exit(EXIT_FAILURE);
   }
+}
+void sort(int& tempMatrix)
+{
+  for(int i = 0; i < 26; i++)
+    {
+      bool swap = false;
+      for(int j = 0; j < 25 - i; j++)
+      {
+        if(tempMatrix[j][0] > tempMatrix[j + 1][0])
+        {
+          int temp0 = tempMatrix[j][0];
+          int temp1 = tempMatrix[j][1];
+
+          tempMatrix[j][0] = tempMatrix[j+1][0];
+          tempMatrix[j][1] = tempMatrix[j+1][1];
+          tempMatrix[j+1][0] = temp0;
+          tempMatrix[j+1][1] = temp1;          
+          swap = true;
+        }
+      }
+      if(!swap)
+      {
+        break;
+      }
+    }
+}
+void closeFiles(fstream& keyFile, fstream& inFile, fstream& outFile)
+{
+  if(keyFile.is_open())
+    {
+      keyFile.close();
+    }
+  if(inFile.is_open())
+    {
+      inFile.close();
+    }
+  if(outFile.is_open())
+    {
+      outFile.close();
+    }
 }
