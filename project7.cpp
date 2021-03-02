@@ -11,7 +11,7 @@ void keyGen(string);
 char transform(char, int[][2]);
 void fileControl(string, string, string, int);
 void fileOpen(fstream&, string, char);
-void sort(int&);
+void sortyBoi(int (&tempMatrix)[26][2]);
 void closeFiles(fstream&, fstream&, fstream&);
 //Main
 int main(int argc, char* argv[]) 
@@ -112,7 +112,7 @@ void fileControl(string keyFileName, string inFileName, string outFileName, int 
   if(mode == 2)
   {
     int tempMatrix[26][2];
-    
+
     fileOpen(keyFile, keyFileName, 'r');
     fileOpen(inFile, inFileName, 'w');
     fileOpen(outFile, outFileName, 'r');
@@ -125,16 +125,17 @@ void fileControl(string keyFileName, string inFileName, string outFileName, int 
       getline(keyFile, input);
     }
 
-    for(int i = 0; i < 2; i++)
+    for(int i = 0; i < 26; i++)
     {
       int temp = 1;
-      for(int j = 0; j < 26; j++)
+      for(int j = 0; j < 2; j++)
       {
-        tempMatrix[j][i] = encDec[j][temp];
-      }
+        tempMatrix[i][j] = encDec[i][temp];
+        temp--;
+      }  
     }
 
-    sort(tempMatrix);
+    sortyBoi(tempMatrix);
 
     while(outFile.peek() != EOF)
     {
@@ -178,7 +179,7 @@ void fileOpen(fstream& file, string name, char mode)
     exit(EXIT_FAILURE);
   }
 }
-void sort(int& tempMatrix)
+void sortyBoi(int (&tempMatrix)[26][2])
 {
   for(int i = 0; i < 26; i++)
     {
