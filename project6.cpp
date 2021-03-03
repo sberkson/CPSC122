@@ -48,6 +48,7 @@ int findInverse(int alpha)
           return i;
         }
     }
+  return 0;
 }
 //Generates and writes to Keyfile the alpha and beta values for key
 void keyGen(string keyFileName)
