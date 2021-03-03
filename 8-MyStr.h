@@ -9,8 +9,9 @@ class MyString
         void myDisplay();
         void myStrcpy(char const* strIn);
         int myStrlen();
+        int myStrlen(char const* strIn);
         bool isEqual(char const* strIn);
-        int find(char const strIn);
+        int find(char const* strIn);
         void concat(char const* strIn);      
         
     private:
