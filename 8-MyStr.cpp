@@ -5,7 +5,9 @@ using namespace std;
 
 MyString::MyString(char const* strIn)
 {
-  *str = *strIn; 
+  str = new char[myStrlen(strIn) + 1];
+  strcpy(str, strIn);
+  length = 0;
 }
 
 MyString::~MyString()
@@ -15,11 +17,7 @@ MyString::~MyString()
 
 void MyString::myDisplay()
 {
-  for(int i = 0; i < myStrlen(); i++)
-  {
-    cout << str[i];
-  }
-  cout << endl;
+  cout << str << endl;
 }
 
 void MyString::myStrcpy(char const* strIn)
@@ -46,6 +44,7 @@ int MyString::myStrlen(char const* strIn)
   {
     return i;
   }
+  length = i;
   return -1;
 }
 
