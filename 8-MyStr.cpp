@@ -22,7 +22,7 @@ void MyString::myDisplay()
   cout << endl;
 }
 
-void myStrcpy(char const* strIn)
+void MyString::myStrcpy(char const* strIn)
 {
   
 }
