@@ -70,16 +70,21 @@ bool MyString::isEqual(char const* strIn)
 
 int MyString::find(char const* strIn)
 {
-  int num = 0;
-
-  for(int i = 0; i < myStrlen(); i++)
+  for(int i = 0; i <= myStrlen() - myStrlen(strIn); i++)
   {
-    if(str[i] == strIn[0])
+    int j;
+
+    for(j = 0; j < myStrlen(strIn); j++)
     {
-      if(isSub(strIn, i))
+      if(str[i + j] != strIn[j])
       {
-            
-      }                
+        break;
+      }
+    }
+    
+    if(j == myStrlen(strIn))
+    {
+      return i;
     }
   }
 
