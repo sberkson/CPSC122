@@ -5,9 +5,23 @@ using namespace std;
 
 MyString::MyString(char const* strIn)
 {
-  str = new char[myStrlen(strIn) + 1];
-  strcpy(str, strIn);
-  length = 0;
+  int i = 0;
+
+  while(strIn[i] != '\0')
+  {
+    length = i;
+    i++;
+  }
+  
+  str = new char[length + 1];
+  i = 0 ;
+
+  while(i < (length + 1))
+  {
+    str[i] = strIn[i];
+    i++;
+  }
+  
 }
 
 MyString::~MyString()
@@ -22,77 +36,98 @@ void MyString::myDisplay()
 
 void MyString::myStrcpy(char const* strIn)
 {
+  str = new char[myStrlen(strIn) + 1];
+
+  int i = 0;
   
+  while(strIn[i] != '\0')
+  {
+    str[i] = strIn[i];
+    i++;
+  }
+  cout << str;
 }
 
 int MyString::myStrlen()
 {
   int i;
 
-  for(int i = 0; str[i]; i++)
+  while(str[i] != '\0')
   {
-    return i;
+    i++;
   }
-  return -1;
+  return i;
 }
 
 int MyString::myStrlen(char const* strIn)
 {
-  int i;
+  int i = 0;
 
-  for(int i = 0; strIn[i]; i++)
+  while(strIn[i] != '\0')
   {
-    return i;
+    i++;
   }
-  length = i;
-  return -1;
+  return i;
 }
 
 bool MyString::isEqual(char const* strIn)
 {
+  int i = 0;
   bool equality = true;
   if(myStrlen() != myStrlen(strIn))
   {
+    cout << "Not Equal" << endl;
     return false;
   }
 
-  for(int i = 0; i < myStrlen(); i++)
+  while(strIn[i] != '\0')
   {
-    if(str[i] != strIn[i])
+    if(strIn[i] != str[i])
     {
-      equality = false;
+      cout << "Not Equal" << endl;
+      return false;
     }
+    i++;
   } 
-  
+  equality = true;
+  if(equality)
+    cout << "Equal";
+  else
+    cout << "Not equal";
+
   return equality;
 }
 
 int MyString::find(char const* strIn)
 {
-  for(int i = 0; i <= myStrlen() - myStrlen(strIn); i++)
+  for(int i = 0; i < myStrlen(); i++)
   {
-    int j;
-
-    for(j = 0; j < myStrlen(strIn); j++)
+  
+    if(str[i] == strIn[0])
     {
-      if(str[i + j] != strIn[j])
+      for(int j = 0; j < myStrlen(strIn); j++)
       {
-        break;
+        if(str[i + j] != strIn[j])
+        {
+         break;
+        }
+        cout << j << ' ' << myStrlen(strIn) << endl;
+        if(j+1 == (myStrlen(strIn) - 1))
+        {
+          cout << "Substring found starting at index " << i;
+          return i;
+        }
       }
     }
-    
-    if(j == myStrlen(strIn))
-    {
-      return i;
-    }
   }
-
+  cout << "Substring not found";
   return -1;
 }
 
 void MyString::concat(char const* strIn)
 {
   str = strcat(str, strIn);
+  cout << str << endl;
 }
 
 bool MyString::isSub(char const* strIn, int idx)
