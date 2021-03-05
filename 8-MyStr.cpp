@@ -126,8 +126,7 @@ int MyString::find(char const* strIn)
 
 void MyString::concat(char const* strIn)
 {
-  str = strcat(str, strIn);
-  cout << str << endl;
+ 
 }
 
 bool MyString::isSub(char const* strIn, int idx)
