@@ -1,3 +1,11 @@
+/*
+Name: Sam Berkson
+Class: CPSC 122-01
+Date Submitted: 3/05/21
+Assignment: Project 8
+Description: Creates MyString class and declares member functions/variables
+*/
+
 #ifndef MYSTRING_H
 #define MYSTRING_H
 
