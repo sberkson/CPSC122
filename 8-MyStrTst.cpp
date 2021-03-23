@@ -46,7 +46,7 @@ str2->myStrcpy(argv[2]);
 cout << endl;
 cout << "***************************************" << endl;
 //End Test of myStrcpy
-
+*/
 //Test of myStrlen
 cout << "***************************************" << endl;
 cout << "*****Test 1 myStrlen*****" << endl;
@@ -61,7 +61,7 @@ cout << str2->myStrlen();
 cout << endl;
 cout << "***************************************" << endl;
 //End Test of myStrlen
-
+/*
 //Test of isEqual
 cout << "***************************************" << endl;
 cout << "*****Test 1 isEqual*****" << endl;
