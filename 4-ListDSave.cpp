@@ -165,7 +165,6 @@ void ListD::deleteLast()
 
 int ListD::DeleteAll(itemType target)
 {
-<<<<<<< HEAD
     int index = 0;
     doubleNode* cur = head;
     doubleNode* next;
@@ -186,24 +185,6 @@ int ListD::DeleteAll(itemType target)
         } 
         cur = next;    
     }
-=======
-    int index = 0;              
-	doubleNode* temp = head;
-    doubleNode* cur;
-
-	while(temp!=NULL)
-    {
-        cur = temp->next;
-		if(temp->item == target)
-        {          
-			index++;
-            temp->next = cur->next;
-            delete cur;
-            length--;
-	    }
-		temp = temp->next;
-    } 
->>>>>>> 682c344ff99b70a5f9dd14d41ea6feae37c736b4
     return index;
 }
 
