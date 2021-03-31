@@ -1,17 +1,25 @@
+/*
+Name: Sam Berkson and Mason Manca
+Class: CPSC 122, Section 1
+Date Submitted: February 25, 2021
+Assignment: N/A 
+Description: header file for a doubly linked list with dummy notes at head and tail
+*/
+
 #include <iostream>
 #include <climits>
 using namespace std;
 
 #include "4-ListD.h"
 
-   
-ListD::ListD()
+template <typename T>
+ListD<T>::ListD()
 {
  length = 0;
  
 //create dummy nodes;
- head = new doubleNode;
- tail = new doubleNode;
+ head = new doubleNode<T>;
+ tail = new doubleNode<T>;
 
  //set values for head dummy node;
  head->prev = NULL;
@@ -24,13 +32,14 @@ ListD::ListD()
  tail->next = NULL;
 }
 
-ListD::ListD(ListD* lst)
+template <typename T>
+ListD<T>::ListD(ListD<T>* lst)
 {
  length = 0; 
  
 //create dummy nodes;
- head = new doubleNode;
- tail = new doubleNode;
+ head = new doubleNode<T>;
+ tail = new doubleNode<T>;
 
  //set values for head dummy node;
  head->prev = NULL;
@@ -43,7 +52,7 @@ ListD::ListD(ListD* lst)
  tail->next = NULL;
 
  //returns pointer to the first node, which is what we want here
- doubleNode* cur = lst->FindPosition(2);
+ doubleNode<T>* cur = lst->FindPosition(2);
  for (int i = 1; i <= lst->length; i++)
  {
   Insert(cur->item,i);
@@ -51,22 +60,22 @@ ListD::ListD(ListD* lst)
  }
 }
 
-ListD::~ListD()
+template <typename T>
+ListD<T>::~ListD()
 {
     while (head != NULL) 
     {
-        doubleNode* cur = head->next;
+        doubleNode<T>* cur = head->next;
         delete head;
         head = cur;
-
     }
 }
 
-doubleNode* ListD::FindPosition(int pos)
+doubleNode<T>* ListD<T>::FindPosition(int pos)
 {
  //Inserting at the tail is a special case.  It can be made much more efficient than
  //this.
- doubleNode* cur = head;
+ doubleNode<T>* cur = head;
  int i = 0;  //begin at the dummy node
  while (i < pos - 1)
  {
@@ -75,15 +84,16 @@ doubleNode* ListD::FindPosition(int pos)
  }
  return cur;
 } 
-  
-void ListD::Insert(itemType item, int pos)
+
+template <typename T>
+void ListD<T>::Insert(itemType item, int pos)
 {
  //new node goes between these two nodes
- doubleNode* insertPtA = FindPosition(pos);  
- doubleNode* insertPtB = insertPtA->next; 
+ doubleNode<T>* insertPtA = FindPosition(pos);  
+ doubleNode<T>* insertPtB = insertPtA->next; 
 
  //create new node and set its values
- doubleNode* tmp = new doubleNode; 
+ doubleNode<T>* tmp = new doubleNode; 
  tmp->prev = insertPtA;
  tmp->item = item;
  tmp->next = insertPtB;
@@ -95,7 +105,8 @@ void ListD::Insert(itemType item, int pos)
  length++;
 }
 
-void ListD::PrintForward()
+template <typename T>
+void ListD<T>::PrintForward()
 {
  doubleNode*  cur = head->next;
 
@@ -108,7 +119,8 @@ void ListD::PrintForward()
  }
 }
 
-void ListD::PrintBackward()
+template <typename T>
+void ListD<T>::PrintBackward()
 {
     doubleNode*  cur = tail->prev;
 
@@ -121,7 +133,8 @@ void ListD::PrintBackward()
     }
 }
 
-void ListD::Delete(int pos)
+template <typename<T>
+void ListD<T>::Delete(int pos)
 {
     doubleNode* cur = head;
 
@@ -144,7 +157,8 @@ void ListD::Delete(int pos)
 	}
 }
 
-void ListD::deleteFirst()
+template <typename T>
+void ListD<T>::deleteFirst()
 {
 	doubleNode* cur = head;
 	head = head->next;
@@ -153,7 +167,8 @@ void ListD::deleteFirst()
 	length--;
 }
 
-void ListD::deleteLast()
+template <typename T>
+void ListD<T>::deleteLast()
 {
     doubleNode* cur = tail;
     tail = tail->prev;
@@ -162,8 +177,8 @@ void ListD::deleteLast()
     length--;
 } 
 
-
-int ListD::DeleteAll(itemType target)
+template <typename T>
+int ListD<T>::DeleteAll(itemType target)
 {
     int index = 0;
     doubleNode* cur = head;
@@ -188,7 +203,8 @@ int ListD::DeleteAll(itemType target)
     return index;
 }
 
-void ListD::Sort()
+template <typename T>
+void ListD<T>::Sort()
 {
     doubleNode* temp = head;
   

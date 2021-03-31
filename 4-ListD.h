@@ -1,5 +1,5 @@
 /*
-Name: Paul De Palma
+Name: Sam Berkson and Mason Manca
 Class: CPSC 122, Section 1
 Date Submitted: February 25, 2021
 Assignment: N/A 
@@ -11,13 +11,15 @@ Description: header file for a doubly linked list with dummy notes at head and t
 
 typedef int itemType;
 
+template <typename T>
 struct doubleNode
 {
- doubleNode* prev;
- itemType item;
- doubleNode* next;
+ doubleNode<T>* prev;
+ T item;
+ doubleNode<T>* next;
 };
 
+template <typename T>
 class ListD
 {
  public:
@@ -43,7 +45,7 @@ class ListD
    pre: ListD exists, pos is in the range [1..length+1].
    post: new node is inserted at postion pos. 
    */
-   void Insert(itemType item, int pos);   
+   void Insert(T item, int pos);   
 
    /*
    pre: ListD exists, pos is in the range [1..length].
@@ -56,7 +58,7 @@ class ListD
    post: All nodes containing item have been deleted.  Returns the
          number of nodes that have been deleted. 
    */
-   int DeleteAll(itemType item);   
+   int DeleteAll(T item);   
 
    /*
    pre: ListD exists.
