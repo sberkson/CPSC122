@@ -11,8 +11,7 @@ Description: header file for a doubly linked list with dummy notes at head and t
 using namespace std;
 
 #include "4-ListD.h"
-
-   
+ 
 ListD::ListD()
 {
  length = 0;

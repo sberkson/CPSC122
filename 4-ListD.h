@@ -9,14 +9,12 @@ Description: header file for a doubly linked list with dummy notes at head and t
 #ifndef LIST_H
 #define LIST_H
 
-typedef int itemType;
-
 template <typename T>
 struct doubleNode
 {
- doubleNode<T>* prev;
+ doubleNode* prev;
  T item;
- doubleNode<T>* next;
+ doubleNode* next;
 };
 
 template <typename T>
@@ -92,11 +90,11 @@ class ListD
    Post: Returns insertion point A (see the implemention of insert)
          used in inserting a node in a list 
    */
-   doubleNode* FindPosition(int pos);
+   doubleNode<T>* FindPosition(int pos);
 
    int length;         //length of the list
-   doubleNode* head;   //points to the first dummy node 
-   doubleNode* tail;   //points to the last dummy node  
+   doubleNode<T>* head;   //points to the first dummy node 
+   doubleNode<T>* tail;   //points to the last dummy node  
 };
 #endif
 
