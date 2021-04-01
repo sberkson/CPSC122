@@ -219,7 +219,7 @@ void ListD<T>::Sort()
     while (r) 
     {
       if (cur->item > r->item)
-        cur = r
+        cur = r;
 
       r = r->next;
     }
