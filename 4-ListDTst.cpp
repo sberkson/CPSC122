@@ -7,15 +7,16 @@ Description: header file for a doubly linked list with dummy notes at head and t
 */
 
 #include <iostream>
+#include <climits>
 using namespace std;
 
-#include "4-ListD.h"
+#include "4-ListD.cpp"
 
 int main()
 {
 //PrintForward(); Test
 /*
- ListD* lst = new ListD;
+ ListD<int>* lst = new ListD<int>;
  
  for (int i = 1; i <= 10; i++)
    lst->Insert(i,i);
@@ -24,14 +25,14 @@ int main()
 
  cout << endl;
  
- ListD* lst1 = new ListD(lst);
+ ListD<int>* lst1 = new ListD<int>(lst);
 
  lst1->PrintForward();
 */
 
 //PrintBackwards() Test
 /*
- ListD* lst = new ListD;
+ ListD<int>* lst = new ListD<int>;
  
  for (int i = 1; i <= 10; i++)
    lst->Insert(i,i);
@@ -40,16 +41,16 @@ int main()
 
  cout << endl;
  
- ListD* lst1 = new ListD(lst);
+ ListD<int>* lst1 = new ListD<int>(lst);
 
  lst1->PrintBackward();
-
 */
 
-/*
-//Delete() Test
 
- ListD* lst = new ListD;
+
+//Delete() Test
+/*
+ ListD<int>* lst = new ListD<int>;
  
  for (int i = 1; i <= 10; i++)
    lst->Insert(i,i);
@@ -61,7 +62,7 @@ int main()
 
  cout << endl;
  
- ListD* lst1 = new ListD;
+ ListD<int>* lst1 = new ListD<int>;
 
 for (int i = 1; i <= 10; i++)
    lst1->Insert(i,i);
@@ -74,9 +75,10 @@ for (int i = 1; i <= 10; i++)
 
 */
 
-/*
+
  //DeleteAll(); Test
- ListD* lst = new ListD;
+ /*
+ ListD<int>* lst = new ListD<int>;
  
  for (int i = 1; i <= 10; i++)
    lst->Insert(i,i);
@@ -88,7 +90,7 @@ for (int i = 1; i <= 10; i++)
   lst->PrintForward();
   cout << endl;
 
-ListD* lst1 = new ListD;
+ListD<int>* lst1 = new ListD<int>;
 
 for (int i = 1; i <= 10; i++)
    lst1->Insert(i,i);
@@ -103,22 +105,24 @@ for (int i = 1; i <= 10; i++)
 
 /*
 //Sort(); Test
- ListD* lst = new ListD;
+ ListD<int>* lst = new ListD<int>;
  for (int i = 1; i <= 10; i++)
    lst->Insert(15-i,i);
 
  lst->PrintForward();
  lst->Sort();
+ cout << endl;
  lst->PrintForward();
 
  cout << endl;
  
- ListD* lst1 = new ListD;
+ ListD<int>* lst1 = new ListD<int>;
 for (int i = 1; i <= 10; i++)
    lst1->Insert(20-i,i);
 
 lst1->PrintForward();
  lst1->Sort();
+ cout << endl;
  lst1->PrintForward();
  */
 return 0;

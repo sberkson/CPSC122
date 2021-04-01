@@ -1,8 +1,8 @@
 /*
 Name: Sam Berkson and Mason Manca
 Class: CPSC 122, Section 1
-Date Submitted: February 25, 2021
-Assignment: N/A 
+Date Submitted: March 31, 2021
+Assignment: Project 11 
 Description: header file for a doubly linked list with dummy notes at head and tail
 */
 
@@ -79,7 +79,16 @@ class ListD
    */
    void Sort();
   
+   /*
+   pre: List exists
+   post: Deletes first node in list
+   */
    void deleteFirst();
+
+   /*
+   pre: List exists
+   post: Deletes last node in list
+   */
    void deleteLast();
 
  private:
