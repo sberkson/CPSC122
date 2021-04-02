@@ -75,7 +75,6 @@ for (int i = 1; i <= 10; i++)
 
 */
 
-
  //DeleteAll(); Test
  /*
  ListD<int>* lst = new ListD<int>;
@@ -100,7 +99,7 @@ for (int i = 1; i <= 10; i++)
   cout << lst1->DeleteAll(2) << endl;;
   cout << endl;  
   lst1->PrintForward();
-*/
+  */
 
 
 /*
