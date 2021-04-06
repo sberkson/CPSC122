@@ -10,7 +10,7 @@ So, without argc, argv, graders will need to hardcode for find, and deleteItem
 #include <iostream>
 using namespace std;
 
-#include "List.h"
+#include "ListT.h"
 
 ListT::ListT()
 {
@@ -99,27 +99,23 @@ void ListT::DeleteItemT()
 
 int ListT::DeleteItem(const itemType target)
 {
-  int index = 0;              
-	node* temp = head;
-  node* cur;
+  int index;
 
-  if(target == 1)
-    DeleteItemH();
-  if(target == length)
-    DeleteItemT();
+  node* cur = head;
+  node* next;
 
-	while(temp!=NULL){
-    cur = temp->next;
-		if(temp->item == target){         
-			index++;
-      temp->next = cur->next;
+  while(cur != NULL)
+  {
+    next = cur->next;
+    if(cur->item == target)
+    {
+      index++;
       delete cur;
-      length--;
-		}
-		temp = temp->next;
-  }
+    }
+    cur = next;
+  }  
   return index;
-  }
+}
 
 node* ListT::PtrTo()
 {

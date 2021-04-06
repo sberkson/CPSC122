@@ -8,8 +8,8 @@ Comments: We are not supposed to edit the source code, as we are supposed to tre
 So, without argc, argv, graders will need to hardcode for find, and deleteItem
 */
 
-#ifndef LIST_H
-#define LIST_H
+#ifndef LISTT_H
+#define LISTT_H
 
 typedef int itemType;
 
