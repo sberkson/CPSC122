@@ -1,2 +1,2 @@
-Code repository my for CPSC 122 programs
+Algorithms and Non-Linear Data Structures
 # CPSC122
